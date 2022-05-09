@@ -9,18 +9,19 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@RestController
+@RestController()
+@RequestMapping("/api")
 public class UserNoDataBaseController {
 
 	@Autowired
 	private UserDaoService userDaoService;
 
-	@GetMapping("/users")
+	@GetMapping("/v1/users")
 	public List<UserNoDataBase> retrieveAllUsers(){
 		return userDaoService.findAll();
 	}
 
-	@GetMapping("/users/{id}")
+	@GetMapping("/v1/users/{id}")
 	public UserNoDataBase retrieveUser(@PathVariable int id){
 		UserNoDataBase user = userDaoService.fondOne(id);
 		if( user == null){
@@ -29,7 +30,7 @@ public class UserNoDataBaseController {
 		return user;
 	}
 
-	@PostMapping("/users")
+	@PostMapping("/v1/users")
 	public ResponseEntity<Object> createUser(@RequestBody UserNoDataBase userRequest){
 		UserNoDataBase savedUser = userDaoService.save(userRequest);
 		URI location = ServletUriComponentsBuilder
@@ -42,7 +43,7 @@ public class UserNoDataBaseController {
 		return ResponseEntity.created(location).build();
 	}
 
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/v1/users/{id}")
 	public void deleteUser(@PathVariable int id){
 		UserNoDataBase user = userDaoService.deleteById(id);
 		if( user == null){
