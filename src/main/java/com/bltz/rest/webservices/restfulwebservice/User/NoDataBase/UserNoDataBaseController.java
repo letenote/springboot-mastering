@@ -44,6 +44,9 @@ public class UserNoDataBaseController {
 
 	@DeleteMapping("/users/{id}")
 	public void deleteUser(@PathVariable int id){
-		userDaoService.deleteById(id);
+		UserNoDataBase user = userDaoService.deleteById(id);
+		if( user == null){
+			throw new UserNotFoundException("id:" +id);
+		}
 	}
 }
