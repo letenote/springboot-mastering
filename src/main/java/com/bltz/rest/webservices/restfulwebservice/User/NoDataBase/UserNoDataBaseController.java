@@ -1,5 +1,6 @@
 package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase;
 
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.Exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,11 @@ public class UserNoDataBaseController {
 
 	@GetMapping("/users/{id}")
 	public UserNoDataBase retrieveUser(@PathVariable int id){
-		return userDaoService.fondOne(id);
+		UserNoDataBase user = userDaoService.fondOne(id);
+		if( user == null){
+			throw new UserNotFoundException("id:" +id);
+		}
+		return user;
 	}
 
 	@PostMapping("/users")
