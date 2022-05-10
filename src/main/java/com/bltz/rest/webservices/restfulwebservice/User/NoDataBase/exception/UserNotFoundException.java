@@ -1,4 +1,4 @@
-package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.Exception;
+package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,6 +1,8 @@
-package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase;
+package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.controllers;
 
-import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.Exception.UserNotFoundException;
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.UserDaoService;
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.exception.UserNotFoundException;
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models.UserNoDataBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

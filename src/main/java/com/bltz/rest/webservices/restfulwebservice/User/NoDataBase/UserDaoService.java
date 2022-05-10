@@ -1,5 +1,6 @@
 package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase;
 
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models.UserNoDataBase;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

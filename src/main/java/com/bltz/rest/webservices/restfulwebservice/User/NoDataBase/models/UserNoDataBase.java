@@ -1,4 +1,4 @@
-package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase;
+package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models;
 
 import java.util.Date;
 
