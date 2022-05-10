@@ -20,6 +20,7 @@ public class UserNoDataBase {
 	@DateFormatValidator
 	@Past(message = "birthDate must be in the past")
 	@DateToAgeValidator
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS2", shape=JsonFormat.Shape.STRING)
 	private Date birthDate;
 
 	public UserNoDataBase(Integer id, String name, Date birthDate) {
