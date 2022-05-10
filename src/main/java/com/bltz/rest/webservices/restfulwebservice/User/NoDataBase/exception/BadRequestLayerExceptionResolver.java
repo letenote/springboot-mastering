@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 public class BadRequestLayerExceptionResolver implements View {
-	private String errorMessage;
+	private final String errorMessage;
 
 	public BadRequestLayerExceptionResolver(String errorMessage) {
 		this.errorMessage = errorMessage;

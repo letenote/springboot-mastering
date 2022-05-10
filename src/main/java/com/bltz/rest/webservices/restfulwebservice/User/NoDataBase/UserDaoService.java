@@ -3,6 +3,7 @@ package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase;
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models.UserNoDataBase;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -31,7 +32,7 @@ public class UserDaoService {
 		return null;
 	}
 
-	public UserNoDataBase save(UserNoDataBase userRequest){
+	public UserNoDataBase save(UserNoDataBase userRequest) throws ConstraintViolationException {
 		if (userRequest.getId() == null) {
 			userRequest.setId(++usersCount);
 		}

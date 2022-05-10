@@ -29,6 +29,8 @@ public class CustomizedResponseLayerExceptionResolverHandler implements HandlerE
 			Object handler,
 			Exception ex
 	) {
+		System.err.println("##::handler 1-> "+ handler.toString());
+		System.err.println("##::handler 2-> "+ ex);
 		String msg_option_1 = GlobalExceptionHandler.getThrowableStackInfo(ex);
 		String msg_option_2 = ex.getMessage();
 		try {
@@ -41,7 +43,7 @@ public class CustomizedResponseLayerExceptionResolverHandler implements HandlerE
 		return null;
 	}
 
-};
+}
 
 
 
