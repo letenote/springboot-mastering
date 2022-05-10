@@ -1,10 +1,19 @@
 package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.*;
+import java.util.Date;
 public class UserNoDataBase {
 	private Integer id;
+	@NotNull(message="name cannot be null")
+	@NotEmpty(message="name cannot be empty")
+	@NotBlank(message="name cannot be blank")
+	@Min(value=2, message="name must be greater than or equal to 2")
 	private String name;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@NotNull(message = "birthDate is required")
+	@Past(message = "birthDate must be in the past")
 	private Date birthDate;
 
 	public UserNoDataBase(Integer id, String name, Date birthDate) {

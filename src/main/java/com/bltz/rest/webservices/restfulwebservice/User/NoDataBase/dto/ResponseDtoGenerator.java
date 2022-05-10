@@ -1,10 +1,7 @@
 package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Map;
 

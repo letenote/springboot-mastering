@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 @RestController()
 @RequestMapping()
 public class UserNoDataBaseController {
@@ -48,7 +48,7 @@ public class UserNoDataBaseController {
 	}
 
 	@PostMapping("/v1/users")
-	public ResponseEntity<Object> createUser(@RequestBody UserNoDataBase userRequest){
+	public ResponseEntity<Object> createUser(@Valid @RequestBody UserNoDataBase userRequest){
 		UserNoDataBase savedUser = userDaoService.save(userRequest);
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()

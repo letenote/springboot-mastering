@@ -2,7 +2,6 @@ package com.bltz.rest.webservices.restfulwebservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 @SpringBootApplication
 public class RestfulWebServiceApplication {
 
