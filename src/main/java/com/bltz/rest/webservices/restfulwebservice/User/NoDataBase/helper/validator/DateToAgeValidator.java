@@ -16,7 +16,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 @Documented
 public @interface DateToAgeValidator {
-	String message() default ":)";
+	String message() default "{your.age.must.be.greater.or.equal.than.18}";
 	Class <?> [] groups() default {};
 	Class <? extends Payload> [] payload() default {};
 }

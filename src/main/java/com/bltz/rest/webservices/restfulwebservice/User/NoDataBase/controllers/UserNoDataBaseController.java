@@ -46,7 +46,6 @@ public class UserNoDataBaseController {
 		var getBody = new ResponseDtoGenerator().isSuccess("User Found", bodyResponse);
 		return ResponseEntity.ok().body(getBody);
 	}
-
 	@PostMapping("/v1/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody UserNoDataBase userRequest){
 		UserNoDataBase savedUser = userDaoService.save(userRequest);

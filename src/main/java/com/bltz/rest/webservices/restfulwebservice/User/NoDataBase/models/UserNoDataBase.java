@@ -1,5 +1,6 @@
 package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models;
 
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.helper.validator.DateFormatValidator;
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.helper.validator.DateNotEmptyValidator;
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.helper.validator.DateToAgeValidator;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -15,9 +16,10 @@ public class UserNoDataBase {
 	private String name;
 //	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@NotNull(message = "birthDate is required")
-	@DateNotEmptyValidator(message = "birthDate cannot be empty")
+	@DateNotEmptyValidator
+	@DateFormatValidator
 	@Past(message = "birthDate must be in the past")
-	@DateToAgeValidator(message = "The birth date must be greater or equal than 18")
+	@DateToAgeValidator
 	private Date birthDate;
 
 	public UserNoDataBase(Integer id, String name, Date birthDate) {
