@@ -21,6 +21,7 @@ import java.util.List;
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ResponseDto> handleAllExceptions(Exception ex, WebRequest request) {
+		System.err.println("##::InternalServerError -> "+ ex.getLocalizedMessage());
 		var exceptionResponse = new ResponseDto()
 				.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())
 				.setShortCode(HttpStatus.INTERNAL_SERVER_ERROR.name())
