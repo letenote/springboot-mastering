@@ -1,6 +1,7 @@
 package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.controllers;
 
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.UserDaoService;
+import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.dto.ResponseDtoGenerator;
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.exception.UserNotFoundException;
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.models.UserNoDataBase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,27 +10,41 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController()
 @RequestMapping("/api")
 public class UserNoDataBaseController {
 
+	public Map<String, Object> bodyResponse;
+
 	@Autowired
 	private UserDaoService userDaoService;
 
+	public UserNoDataBaseController() {
+		this.bodyResponse = new HashMap<>();
+	}
+
 	@GetMapping("/v1/users")
-	public List<UserNoDataBase> retrieveAllUsers(){
-		return userDaoService.findAll();
+	public ResponseEntity<Object> retrieveAllUsers(){
+		List<UserNoDataBase> users = userDaoService.findAll();
+		bodyResponse.put("data", users);
+		var getBody = new ResponseDtoGenerator().isSuccess("Users Found", bodyResponse);
+		return ResponseEntity.ok().body(getBody);
 	}
 
 	@GetMapping("/v1/users/{id}")
-	public UserNoDataBase retrieveUser(@PathVariable int id){
+	public ResponseEntity<Object> retrieveUser(@PathVariable int id){
 		UserNoDataBase user = userDaoService.fondOne(id);
 		if( user == null){
 			throw new UserNotFoundException("id:" +id);
 		}
-		return user;
+
+		bodyResponse.put("data", user);
+		var getBody = new ResponseDtoGenerator().isSuccess("User Found", bodyResponse);
+		return ResponseEntity.ok().body(getBody);
 	}
 
 	@PostMapping("/v1/users")
@@ -41,15 +56,20 @@ public class UserNoDataBaseController {
 				.buildAndExpand(savedUser.getId())
 				.toUri();
 
-
-		return ResponseEntity.created(location).build();
+		bodyResponse.put("data", savedUser);
+		var getBody = new ResponseDtoGenerator().isCreated("User Created", bodyResponse);
+		return ResponseEntity.created(location).body(getBody);
 	}
 
 	@DeleteMapping("/v1/users/{id}")
-	public void deleteUser(@PathVariable int id){
+	public ResponseEntity<Object> deleteUser(@PathVariable int id){
 		UserNoDataBase user = userDaoService.deleteById(id);
 		if( user == null){
-			throw new UserNotFoundException("id:" +id);
+			throw new UserNotFoundException(String.format("user with id: '%s' is not found", id));
 		}
+
+		bodyResponse.put("data", user);
+		var getBody = new ResponseDtoGenerator().isAccepted(String.format("user with id: '%s' is deleted", id), bodyResponse);
+		return ResponseEntity.accepted().body(getBody);
 	}
 }

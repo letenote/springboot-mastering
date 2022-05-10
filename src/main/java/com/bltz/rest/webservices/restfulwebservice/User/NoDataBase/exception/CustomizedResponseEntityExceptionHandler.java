@@ -15,14 +15,13 @@ import java.util.Date;
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ResponseDto<Object>> handleAllExceptions(Exception ex, WebRequest request) {
-		var exceptionResponse = new ResponseDto<>()
+	public ResponseEntity<ResponseDto> handleAllExceptions(Exception ex, WebRequest request) {
+		var exceptionResponse = new ResponseDto()
 				.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())
 				.setShortCode(HttpStatus.INTERNAL_SERVER_ERROR.name())
 				.setTimestamp(new Date())
 				.setMessage(ex.getMessage())
-				.setDetails(request.getDescription(false))
-				.setBody(null);
+				.setDetails(request.getDescription(false));
 
 		return ResponseEntity
 				.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -30,14 +29,13 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	}
 
 	@ExceptionHandler(ServiceNotImplementedException.class)
-	public ResponseEntity<ResponseDto<Object>> handleServiceNotImplementedException(Exception ex, WebRequest request) {
-		var exceptionResponse = new ResponseDto<>()
+	public ResponseEntity<ResponseDto> handleServiceNotImplementedException(Exception ex, WebRequest request) {
+		var exceptionResponse = new ResponseDto()
 				.setStatus(HttpStatus.NOT_IMPLEMENTED.value())
 				.setShortCode(HttpStatus.NOT_IMPLEMENTED.name())
 				.setTimestamp(new Date())
 				.setMessage(ex.getMessage())
-				.setDetails(request.getDescription(false))
-				.setBody(null);
+				.setDetails(request.getDescription(false));
 
 		return ResponseEntity
 				.status(HttpStatus.NOT_IMPLEMENTED).
@@ -45,14 +43,13 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	}
 
 	@ExceptionHandler(UserNotFoundException.class)
-	public ResponseEntity<ResponseDto<Object>> handleUserNotFoundException(Exception ex, WebRequest request) {
-		var exceptionResponse = new ResponseDto<>()
+	public ResponseEntity<ResponseDto> handleUserNotFoundException(Exception ex, WebRequest request) {
+		var exceptionResponse = new ResponseDto()
 				.setStatus(HttpStatus.NOT_FOUND.value())
 				.setShortCode(HttpStatus.NOT_FOUND.name())
 				.setTimestamp(new Date())
 				.setMessage(ex.getMessage())
-				.setDetails(request.getDescription(false))
-				.setBody(null);
+				.setDetails(request.getDescription(false));
 
 		return ResponseEntity.
 				status(HttpStatus.NOT_FOUND)

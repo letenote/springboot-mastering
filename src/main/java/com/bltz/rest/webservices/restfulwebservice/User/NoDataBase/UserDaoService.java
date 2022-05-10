@@ -10,12 +10,12 @@ import java.util.List;
 
 @Component
 public class UserDaoService {
-	private static List<UserNoDataBase> users = new ArrayList<>();
+	private static final List<UserNoDataBase> users = new ArrayList<>();
 	private static int usersCount = 3;
 	static {
-		users.add(new UserNoDataBase(1, "Adam", new Date()));
-		users.add(new UserNoDataBase(2, "Eve", new Date()));
-		users.add(new UserNoDataBase(3, "Jack", new Date()));
+		users.add(new UserNoDataBase(1, "Loki", new Date()));
+		users.add(new UserNoDataBase(2, "Baldur", new Date()));
+		users.add(new UserNoDataBase(3, "Freya", new Date()));
 	}
 
 	public List<UserNoDataBase> findAll(){

@@ -2,44 +2,38 @@ package com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.dto;
 
 import java.util.Date;
 
-public class ResponseDto<T> {
+public class ResponseDto {
 	private Integer status;
 	private String shortCode;
 	private Date timestamp;
 	private String message;
 	private String details;
-	private T body;
 
 	public ResponseDto() {
 	}
 
-	public ResponseDto<T> setStatus(Integer status) {
+	public ResponseDto setStatus(Integer status) {
 		this.status = status;
 		return this;
 	}
 
-	public ResponseDto<T> setShortCode(String shortCode) {
+	public ResponseDto setShortCode(String shortCode) {
 		this.shortCode = shortCode;
 		return this;
 	}
 
-	public ResponseDto<T> setTimestamp(Date timestamp) {
+	public ResponseDto setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 		return this;
 	}
 
-	public ResponseDto<T> setMessage(String message) {
+	public ResponseDto setMessage(String message) {
 		this.message = message;
 		return this;
 	}
 
-	public ResponseDto<T> setDetails(String details) {
+	public ResponseDto setDetails(String details) {
 		this.details = details;
-		return this;
-	}
-
-	public ResponseDto<T> setBody(T body) {
-		this.body = body;
 		return this;
 	}
 
@@ -63,7 +57,4 @@ public class ResponseDto<T> {
 		return details;
 	}
 
-	public T getBody() {
-		return body;
-	}
 }
