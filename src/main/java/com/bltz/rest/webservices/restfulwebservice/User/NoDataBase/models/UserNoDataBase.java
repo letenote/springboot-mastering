@@ -4,10 +4,11 @@ import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.helper.valida
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.helper.validator.DateNotEmptyValidator;
 import com.bltz.rest.webservices.restfulwebservice.User.NoDataBase.helper.validator.DateToAgeValidator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.validation.constraints.*;
 import java.util.Date;
-public class UserNoDataBase {
+public class UserNoDataBase extends RepresentationModel<UserNoDataBase> {
 	private Integer id;
 	@NotNull(message="name is required")
 	@NotEmpty(message="name cannot be empty")

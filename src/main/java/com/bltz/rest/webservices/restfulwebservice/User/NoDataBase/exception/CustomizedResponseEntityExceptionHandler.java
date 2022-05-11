@@ -22,10 +22,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @ControllerAdvice
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+	private static Logger log = LoggerFactory.getLogger(CustomizedResponseEntityExceptionHandler.class);
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ResponseDto> handleAllExceptions(Exception ex, WebRequest request) {
 		System.err.println("##::InternalServerError -> "+ ex.getLocalizedMessage());
@@ -70,7 +72,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 			MissingServletRequestPartException ex, HttpHeaders headers, HttpStatus status, WebRequest request
 	) {
 		System.err.println("##::MissingServletRequestPart -> "+ ex.getLocalizedMessage());
-
+		log.info("_DEBUG::handleMissingServletRequestPart: " + ex.getLocalizedMessage());
 		var exceptionResponse = new ResponseDto()
 				.setStatus(HttpStatus.BAD_REQUEST.value())
 				.setShortCode(HttpStatus.BAD_REQUEST.name())
